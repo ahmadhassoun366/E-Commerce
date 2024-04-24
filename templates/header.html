@@ -1,0 +1,98 @@
+<header>
+  <nav
+    x-data="{ open: false }"
+    class="flex h-auto w-auto bg-white shadow-lg rounded-lg justify-between md:h-16"
+  >
+    <div class="flex w-full justify-between">
+      <div
+        :class="open ? 'hidden':'flex'"
+        class="flex w-1/4 px-6 items-center font-semibold md:w-1/5 md:px-1 md:flex md:items-center md:justify-center"
+        x-transition:enter="transition ease-out duration-300"
+      >
+        <a href="/" class="text-xl">E-Commerce</a>
+      </div>
+
+      <div
+        x-show="open"
+        x-transition:enter="transition ease-in-out duration-300"
+        class="flex flex-col w-full h-auto md:hidden"
+      >
+        <div class="flex flex-col items-center justify-center gap-2">
+          <a href="/">Products</a>
+          <a href="/contact">Contact</a>
+          <a href="/admin">Admin</a>
+          <button>Login</button>
+          <button>Sign Up</button>
+        </div>
+      </div>
+      <div
+        class="hidden w-2/4 items-center justify-center font-semibold md:flex gap-20"
+      >
+        <a href="/">Products</a>
+        <a href="/contact">Contact</a>
+        <a href="/admin">Admin</a>
+      </div>
+      {% if not loggedIn %}
+      <div
+        class="hidden w-1/4 items-center justify-center font-semibold md:flex gap-4"
+      >
+        <button><a href="/loginForm">Login</a></button>
+        <button>
+          <a
+            href="/registerationForm"
+            class="px-6 py-2 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+            >Sign Up</a
+          >
+        </button>
+      </div>
+      {% else %}
+      <div class="flex justify-center items-center w-1/4">
+        <div class="dropdown">
+          <h1 class="text-lg">Hello {{firstName}}</h1>
+          <div class="dropdown-content">
+            <a href="/cart">Your orders</a>
+            <a href="/account/profile">Your profile</a>
+            <hr />
+            <a href="/logout">Sign Out</a>
+          </div>
+        </div>
+        <a
+          class="flex items-center space-x-2 justify-center px-6 py-2 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+          href="/cart"
+        >
+          <img src={{url_for('static', filename='images/shoppingCart.png')}}
+          id="" class="w-6 h-6"/>
+          <h1 class="t">CART {{noOfItems}}</h1>
+        </a>
+      </div>
+      {% endif %}
+
+      <button
+        class="text-gray-500 w-10 h-10 relative focus:outline-none bg-white md:hidden"
+        @click="open = !open"
+      >
+        <span class="sr-only">Open main menu</span>
+        <div
+          class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2"
+        >
+          <span
+            aria-hidden="true"
+            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
+            :class="{'rotate-45': open,' -translate-y-1.5': !open }"
+          ></span>
+          <span
+            aria-hidden="true"
+            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
+            :class="{'opacity-0': open } "
+          ></span>
+          <span
+            aria-hidden="true"
+            class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out"
+            :class="{'-rotate-45': open, ' translate-y-1.5': !open}"
+          ></span>
+        </div>
+      </button>
+    </div>
+  </nav>
+  <header />
+</header>

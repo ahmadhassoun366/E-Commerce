@@ -1,79 +1,52 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<title>Welcome</title>
-<link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }} />
-<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
-</head>
-<body>
-<div id="title">
-	<form>
-		<input id="searchBox" type="text" name="searchQuery">
-		<input id="searchButton" type="submit" value="Search">
-	</form>
+  <head>
+    <title>Welcome</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }}
+    /> <link rel="stylesheet" href={{ url_for('static',
+    filename='css/topStyle.css') }} />
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+  </head>
+  <body class="bg-gray-50">
 
-	{% if not loggedIn %}
-	<div id="signInButton">
-		<a class="link" href="/loginForm">Sign In</a>
-	</div>
-	{% else %}
-	<div class="dropdown">
-		<button class="dropbtn">Hello, <br>{{firstName}}</button>
-		<div class="dropdown-content">
-			<a href="/account/orders">Your orders</a>
-			<a href="/account/profile">Your profile</a>
-			<hr>
-			<a href="/logout">Sign Out</a>
-		</div>
-	</div>
-	{% endif %}
-	<div id="kart">
-		<a class="link" href="/cart">
-			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			CART {{noOfItems}}
-		</a>
-	</div>
-</div>
-<div class="display">
-	<div class="displayCategory">
-		<h2>Shop by Category: </h2>
-		<ul>
-			{% for row in categoryData %}
-			<li><a href="/displayCategory?categoryId={{row[0]}}">{{row[1]}}</a></li>
-			{% endfor %}
-		</ul>
-	</div>
-	<div>
-		<h2>Items</h2>
-		{% for data in itemData %}
-		<table>
-			<tr id="productName">
-				{% for row in data %}
-				<td>
-					{{row[1]}}
-				</td>
-				{% endfor %}
-			</tr>
-			<tr id="productImage">
-				{% for row in data %}
-				<td>
-					<a href="/productDescription?productId={{row[0]}}">
-						<img src={{ url_for('static', filename='uploads/' + row[4]) }} id="itemImage" />
-					</a>
-				</td>
-				{% endfor %}
-			</tr>
-			<tr id="productPrice">
-				{% for row in data %}
-				<td>
-					Rs {{row[2]}}
-				</td>
-				{% endfor %}
-			</tr>
-		</table>
-		{% endfor %}
-	</div>
-</div>
-</body>
+    {% include 'header.html' %}
+    <div class="displayCategory my-10">
+      <h1 class="text-3xl font-bold text-gray-800 mb-5 text-center">Shop by Category!</h1>
+      <div class="grid grid-cols-5 items-center justify-center gap-4">
+        {% for row in categoryData %}
+        <a href="/displayCategory?categoryId={{row[0]}}" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">{{row[1]}}</a>
+        {% endfor %}
+      </div>
+    </div>
+      <div class="flex flex-col justify-center items-center">
+        <div class="text-center w-full">
+          <h2 class="text-3xl font-bold text-gray-800  text-center">All Items</h2>
+        </div>
+        {% for data in itemData %}
+        <div class="grid grid-cols-4 gap-10 py-10">
+          <!-- Each product gets a container -->
+          {% for row in data %}
+          <div class="bg-white rounded-lg shadow">
+            <!-- Each row item becomes a flex item -->
+            <div class="product-image">
+              <a href="/productDescription?productId={{ row[0] }}">
+                <img
+                  src="{{ url_for('static', filename='uploads/' + row[4]) }}"
+                  class="w-60 h-72 rounded-xl"
+                />
+              </a>
+            </div>
+            <div class="text-xl p-2">{{ row[1] }}</div>
+            <div class="p-2">{{ row[2] }} $</div>
+          </div>
+          {% endfor %}
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- footer -->
+    {% include 'footer.html' %}
+
+  </body>
 </html>
-

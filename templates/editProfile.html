@@ -1,56 +1,109 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<title>Edit Profile </title>
-<link rel="stylesheet" href={{ url_for('static', filename='css/editProfile.css') }} />
-<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
-</head>
-<body>
-<div id="title">
-	<form>
-		<input id="searchBox" type="text" name="searchQuery">
-		<input id="searchButton" type="submit" value="Search">
-	</form>
+  <head>
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href={{ url_for('static',
+    filename='css/topStyle.css') }} />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    {% include 'header.html' %}
 
-	{% if not loggedIn %}
-	<div id="signInButton">
-		<a class="link" href="/loginForm">Sign In</a>
-	</div>
-	{% else %}
-	<div class="dropdown">
-		<button class="dropbtn">Hello, <br>{{firstName}}</button>
-		<div class="dropdown-content">
-			<a href="/account/orders">Your orders</a>
-			<a href="/account/profile">Your profile</a>
-			<hr>
-			<a href="/logout">Sign Out</a>
-		</div>
-	</div>
-	{% endif %}
-	<div id="kart">
-		<a class="link" href="/cart">
-			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			CART {{noOfItems}}
-		</a>
-	</div>
-</div>
-
-<div class="display">
-	<h2>Edit profile</h2>
-	<form action="/updateProfile" method="POST">
-		<p>Email:<input type="email" name="email" value={{profileData[1]}} readonly="readonly"></p>
-		<p>First Name:<input type="text" name="firstName" value={{profileData[2]}}></p>
-		<p>Last Name: <input type="text" name="lastName" value={{profileData[3]}}></p>
-		<p>Address 1: <input type="text" name="address1" value={{profileData[4]}}></p>
-		<p>Address 2: <input type="text" name="address2" value={{profileData[5]}}></p>
-		<p>Zip Code: <input type="text" name="zipcode" value={{profileData[6]}}></p>
-		<p>City: <input type="text" name="city" value={{profileData[7]}}></p>
-		<p>State: <input type="text" name="state" value={{profileData[8]}}></p>
-		<p>Country: <input type="text" name="country" value={{profileData[9]}}></p>
-		<p>Phone Number: <input type="text" name="phone" value={{profileData[10]}}></p>
-		<input type="submit" value="Save">
-	</form>
-</div>
-</body>
+    <div class="display max-w-4xl mx-auto p-6 bg-white rounded-lg shadow my-6">
+      <h2 class="text-3xl font-bold text-gray-800 mb-5 text-center">Edit Profile</h2>
+      <form
+        action="/updateProfile"
+        method="POST"
+        class="grid grid-cols-2 gap-4"
+      >
+        <p>
+          Email:<input
+            type="email"
+            name="email"
+            value="{{profileData[1]}}"
+            readonly="readonly"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          First Name:<input
+            type="text"
+            name="firstName"
+            value="{{profileData[2]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          Last Name:<input
+            type="text"
+            name="lastName"
+            value="{{profileData[3]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          Address 1:<input
+            type="text"
+            name="address1"
+            value="{{profileData[4]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          Address 2:<input
+            type="text"
+            name="address2"
+            value="{{profileData[5]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          Zip Code:<input
+            type="text"
+            name="zipcode"
+            value="{{profileData[6]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          City:<input
+            type="text"
+            name="city"
+            value="{{profileData[7]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          State:<input
+            type="text"
+            name="state"
+            value="{{profileData[8]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          Country:<input
+            type="text"
+            name="country"
+            value="{{profileData[9]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <p>
+          Phone Number:<input
+            type="text"
+            name="phone"
+            value="{{profileData[10]}}"
+            class="w-2/4 py-2 rounded bg-gray-100 px-2 mx-2"
+          />
+        </p>
+        <input
+          type="submit"
+          value="Save"
+          class="col-span-2 bg-gray-800 text-white px-4 py-2 rounded-xl cursor-pointer hover:bg-gray-900"
+        />
+      </form>
+    </div>
+    {% include 'footer.html' %}
+  </body>
 </html>
-

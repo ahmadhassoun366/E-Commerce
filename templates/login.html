@@ -1,15 +1,41 @@
+<!DOCTYPE html>
 <html>
-<head>
-<title>	Flask app </title>
-</head>
-<body>
-<p> {{error}} </p>
-<form action="/login" method="POST">
-	<p>Email: <input type="text" name="email"></p>
-	<p>Password: <input type="password" name="password"></p>
-	<p><input type="submit"></p>
-	<a href="/registerationForm">Register here</a>
-</form>
+  <head>
+    <title>Flask app</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/auth.css')}}
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    {% include 'header.html' %}
 
-</body>
+    <div class="flex justify-center items-center mt-20">
+      <form class="container w-[30%]" action="/login" method="POST">
+        <input type="checkbox" id="check" />
+        <div class="login form">
+          <header>Login</header>
+          <div action="#">
+            <input type="text" name="email" placeholder="Enter your email" />
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+            />
+            <a href="#">Forgot password?</a>
+            <input type="submit" class="button" />
+          </div>
+          <div class="signup">
+            <span class="signup"
+              >Don't have an account?
+              <a href="/registerationForm">Signup</a>
+            </span>
+          </div>
+        </div>
+        <p class="text-red-500 text-center">{{error}}</p>
+      </form>
+    </div>
+    <footer class="bg-white dark:bg-gray-900 mt-20">
+      {% include 'footer.html' %}
+    </footer>
+  </body>
 </html>

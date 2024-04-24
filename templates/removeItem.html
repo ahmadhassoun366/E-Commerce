@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Remove Item</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/topStyle.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    {% include 'header.html' %}
+
+    <h1 class="text-3xl font-bold text-gray-800 my-5 text-center">Remove Item</h1>
+    <div class="flex justify-center w-full">
+      <div class="grid grid-cols-3 bg-white p-8 rounded-lg w-3/4">
+        {% for product in products %}
+        <div class="mb-4">
+          <!-- Display the name of the product -->
+          <p>{{ product[1] }}: {{ product[2] }}</p>
+
+          <!-- Form to submit the removal of the product -->
+          <form action="{{ url_for('removeItem') }}" method="post">
+            <!-- Hidden input field to send the product ID -->
+            <input type="hidden" name="productId" value="{{ product[0] }}" />
+
+            <!-- Button to trigger the removal -->
+            <button
+              type="submit"
+              class="bg-red-500 text-white px-4 py-2 rounded-lg"
+            >
+              Remove
+            </button>
+          </form>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <!-- Link to navigate back to the home page -->
+    <div class="flex justify-center mt-2">
+      <a href="{{ url_for('root') }}" class="text-white text-lg"
+        >Back to Home</a
+      >
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add New Category</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    {% include 'header.html' %}
+    <div class="flex justify-center items-center h-[500px]">
+      <div class="w-1/4 mt-10">
+        <h1 class="text-xl font-bold">Add a New Category</h1>
+        <form action="{{ url_for('addCategory') }}" method="post" class="mt-4">
+          <div>
+            <label
+              for="categoryName"
+              class="block text-sm font-medium text-gray-700"
+              >Category Name:</label
+            >
+            <input
+              type="text"
+              id="categoryName"
+              name="categoryName"
+              required
+              class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+            />
+          </div>
+          <button
+            type="submit"
+            class="mt-4 px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto  focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80"
+          >
+            Add Category
+          </button>
+        </form>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

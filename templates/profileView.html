@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>View Profile</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/topStyle.css') }}"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    {% include 'header.html' %}
+
+    <div
+      class="max-w-4xl mx-auto p-6 bg-white rounded-lg shadow my-6 h-[300px]"
+    >
+      <h2 class="text-3xl font-bold text-gray-800 mb-5 text-center">View Profile</h2>
+      <div class="grid grid-cols-2 gap-4">
+        <p>Email: {{ profileData[1] }}</p>
+        <p>First Name: {{ profileData[2] }}</p>
+        <p>Last Name: {{ profileData[3] }}</p>
+        <p>Address 1: {{ profileData[4] }}</p>
+        <p>Address 2: {{ profileData[5] }}</p>
+        <p>Zip Code: {{ profileData[6] }}</p>
+        <p>City: {{ profileData[7] }}</p>
+        <p>State: {{ profileData[8] }}</p>
+        <p>Country: {{ profileData[9] }}</p>
+        <p>Phone Number: {{ profileData[10] }}</p>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
+</html>

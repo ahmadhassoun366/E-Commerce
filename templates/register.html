@@ -1,33 +1,84 @@
 <html>
-<head>
-<title>Sign up</title>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/validateForm.js') }}">
-</script>
-</head>
-<body>
-<form action="/register" method="POST" onsubmit="return validate()">
-    <p>Email: <input type="email" name="email"></p>
+  <head>
+    <title>Sign up</title>
+    <link rel="stylesheet" href={{url_for('static', filename='css/auth.css')}}
+    />
+    <script
+      type="text/javascript"
+      src="{{ url_for('static', filename = 'js/validateForm.js') }}"
+    ></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="">
+    {% include 'header.html' %}
 
-    <P>Password: <input type="password" name="password" id="password" required></p>
+    <div class="flex justify-center items-centers">
+      <div class="w-2/4 form bg-white p-6 my-10 rounded-xl shadow-xl">
+        <header>Register</header>
+        <form
+          class=""
+          action="/register"
+          method="POST"
+          onsubmit="return validate()"
+        >
+          <div class="flex space-x-4">
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+            />
+            <input type="text" name="phone" placeholder="Phone Number" />
+          </div>
 
-    <p>Confirm Password: <input type="password" name="cpassword" id="cpassword"></p>
+          <div class="flex space-x-4">
+            <input
+              type="password"
+              name="password"
+              id="password"
+              required
+              placeholder="Create a password"
+            />
+            <input
+              type="password"
+              name="cpassword"
+              id="cpassword"
+              required
+              placeholder="Confirm your password"
+            />
+          </div>
+          <div class="flex space-x-4">
+            <input type="text" name="firstName" placeholder="First Name" />
+            <input
+              type="text"
+              name="lastName"
+              required
+              placeholder="Last Name"
+            />
+          </div>
+          <div class="flex space-x-4">
+            <input type="text" name="address1" placeholder="First Address" />
+            <input type="text" name="address2" placeholder="Second Address" />
+          </div>
+          <div class="flex space-x-4">
+            <input type="text" name="zipcode" placeholder="Zip Code" />
+            <input type="text" name="city" placeholder="City" />
+          </div>
+          <div class="flex space-x-4">
+            <input type="text" name="state" placeholder="State" />
+            <input type="text" name="country" placeholder="Country" />
+          </div>
 
-    <p>First Name: <input type="text" name="firstName"></p>
-    <p>Last Name: <input type="text" name="lastName"></p>
-    <p>Address Line 1: <input type="text" name="address1"></p>
-    <p>Address Line 2: <input type="text" name="address2"></p>
-    <p>Zipcode: <input type="text" name="zipcode"></p>
-    <p>City: <input type="text" name="city"></p>
-    <p>State: <input type="text" name="state"></p>
-    <p>Country: <input type="text" name="country"></p>
-    <p>Phone Number: <input type="text" name="phone"></p>
-
-    <p><input type="submit" value="Register"></p>
-
-    <a href="/loginForm">Login here</a>
-</form>
-</body>
+          <input type="submit" value="Register" class="button" />
+        </form>
+        <div class="signup">
+          <span class="signup"
+            >Already have an account?
+            <a href="/loginForm">Login here</a>
+          </span>
+        </div>
+      </div>
+    </div>
+    {% include 'footer.html' %}
+  </body>
 </html>
-
-
-

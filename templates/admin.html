@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Home</title>
+    <title>Admin Home</title>
     <link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }}>
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
@@ -11,32 +11,32 @@
     {% include 'header.html' %}
 
     <div class="container mx-auto p-4 mt-8 text-center">
-      <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome to Your Profile!</h1>
-      <p class="text-gray-600 mb-8">Manage your account settings and set personal preferences.</p>
+      <h1 class="text-3xl font-bold text-gray-800 mb-2">Welcome Admin!</h1>
+      <p class="text-gray-600 mb-8">Manage your WebApp.</p>
 
       <div class="flex items-center justify-center h-[200px]">
         <!-- View Profile Button -->
-        <a href="/account/profile/view" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+        <a href="/addCategory" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 9h.008v.008H15.75V9zm-7.5 0h.008v.008H8.25V9zm3.75 9a3.75 3.75 0 100-7.5 3.75 3.75 0 000 7.5zm0 1.5a5.25 5.25 0 110-10.5 5.25 5.25 0 010 10.5zm7.5-5.25h1.5m-12 0H6m13.5 0a6.75 6.75 0 11-13.5 0 6.75 6.75 0 0113.5 0z" />
           </svg>
-          View Profile
+         Add Category
         </a>
 
         <!-- Edit Profile Button -->
-        <a href="/account/profile/edit" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+        <a href="/addItem" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 2.487l4.65 4.65a1.875 1.875 0 010 2.65L8.963 21.237a4.5 4.5 0 01-2.264 1.209l-4.175.834a.375.375 0 01-.456-.456l.834-4.175a4.5 4.5 0 011.209-2.264L13.213 2.487a1.875 1.875 0 013.65 0z" />
           </svg>
-          Edit Profile
+          Add Item
         </a>
 
         <!-- Change Password Button -->
-        <a href="/account/profile/changePassword" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
+        <a href="/removeItem" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 inline-block mr-2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 15v3m0 0H9m3 0h3m1.5-15h-12a1.5 1.5 0 00-1.5 1.5v12a1.5 1.5 0 001.5 1.5h12a1.5 1.5 0 001.5-1.5v-12a1.5 1.5 0 00-1.5-1.5z" />
           </svg>
-          Change Password
+          Remove Item
         </a>
       </div>
     </div>

@@ -1,69 +1,45 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-<head>
-<title>Category: {{categoryName}}</title>
-<link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }} />
-<link rel="stylesheet" href={{ url_for('static', filename='css/topStyle.css') }} />
-</head>
-<body>
-<div id="title">
-	<form>
-		<input id="searchBox" type="text" name="searchQuery">
-		<input id="searchButton" type="submit" value="Search">
-	</form>
-
-	{% if not loggedIn %}
-	<div id="signInButton">
-		<a class="link" href="/loginForm">Sign In</a>
-	</div>
-	{% else %}
-	<div class="dropdown">
-		<button class="dropbtn">Hello, <br>{{firstName}}</button>
-		<div class="dropdown-content">
-			<a href="/account/orders">Your orders</a>
-			<a href="/account/profile">Your profile</a>
-			<hr>
-			<a href="/logout">Sign Out</a>
-		</div>
-	</div>
-	{% endif %}
-	<div id="kart">
-		<a class="link" href="/cart">
-			<img src={{url_for('static', filename='images/shoppingCart.png')}} id="cartIcon" />
-			CART {{noOfItems}}
-		</a>
-	</div>
-</div>
-
-<div>
-	<h2>Showing all products of Category {{categoryName}}:</h2>
-	{% for itemData in data %}
-	<table>
-		<tr id="productName">
-			{% for row in itemData %}
-			<td>
-				{{row[1]}}
-			</td>
-			{% endfor %}
-		</tr>
-		<tr id="productImage">
-			{% for row in itemData %}
-			<td>
-				<a href="/productDescription?productId={{row[0]}}">
-					<img src={{ url_for('static', filename='uploads/' + row[3]) }} id="itemImage" />
-				</a>
-			</td>
-			{% endfor %}
-		</tr>
-		<tr id="productPrice">
-			{% for row in itemData %}
-			<td>
-				Rs {{row[2]}}
-			</td>
-			{% endfor %}
-		</tr>
-	</table>
-	{% endfor %}
-</div>
-</body>
+  <head>
+    <title>Category: {{ categoryName or "Unknown Category" }}</title>
+    <link rel="stylesheet" href={{ url_for('static', filename='css/home.css') }}
+    /> <link rel="stylesheet" href={{ url_for('static',
+    filename='css/topStyle.css') }} />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    {% include 'header.html' %}
+    <div class="flex flex-col justify-center items-center space-y-10 m-10">
+      <h2 class="text-3xl font-bold text-gray-800 mb-5 text-center">
+        {{ categoryName or "Category Not Found" }}
+      </h2>
+      {% if data %}
+      <div class="grid grid-cols-4 gap-4">
+        {% for row in data %}
+        <div
+          class="flex flex-col justify-center items-center space-y-4 bg-white rounded-xl shadow-xl w-72 text-black"
+        >
+          <div id="productImage">
+            <a href="/productDescription?productId={{ row[0] }}">
+              <img
+                src="{{ url_for('static', filename='uploads/' + row[3]) }}"
+                id="itemImage"
+              />
+            </a>
+          </div>
+          <div id="productName">
+            <h1>{{ row[1] }}</h1>
+          </div>
+          <div id="productPrice">
+            <h2>{{ row[2] }} $</h2>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% else %}
+      <p>No products found in this category.</p>
+      {% endif %}
+    </div>
+    {% include 'footer.html' %}
+  </body>
 </html>

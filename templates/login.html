@@ -9,8 +9,8 @@
   <body class="bg-gray-50">
     {% include 'header.html' %}
 
-    <div class="flex justify-center items-center mt-20">
-      <form class="container w-[30%]" action="/login" method="POST">
+    <div class="flex justify-center items-center min-h-screen">
+      <form class="w-[30%]" action="/login" method="POST">
         <input type="checkbox" id="check" />
         <div class="login form">
           <header>Login</header>
@@ -34,8 +34,7 @@
         <p class="text-red-500 text-center">{{error}}</p>
       </form>
     </div>
-    <footer class="bg-white dark:bg-gray-900 mt-20">
-      {% include 'footer.html' %}
-    </footer>
+
+    {% include 'footer.html' %}
   </body>
 </html>

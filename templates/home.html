@@ -13,9 +13,11 @@
     {% include 'header.html' %}
     <div class="displayCategory my-10">
       <h1 class="text-3xl font-bold text-gray-800 mb-5 text-center">Shop by Category!</h1>
-      <div class="grid grid-cols-5 items-center justify-center gap-4">
+      <div class="grid grid-cols-5 items-center justify-center gap-8">
         {% for row in categoryData %}
-        <a href="/displayCategory?categoryId={{row[0]}}" class="px-6 py-2.5 text-sm font-medium tracking-wider text-white transition-colors duration-300 transform md:w-auto md:mx-4 focus:outline-none bg-gray-800 rounded-lg hover:bg-gray-700 focus:ring focus:ring-gray-300 focus:ring-opacity-80">{{row[1]}}</a>
+        <button class="text-center">        
+          <a href="/displayCategory?categoryId={{row[0]}}" class=" text-xl font-medium text-gray-600 hover:underline">{{row[1]}}</a>
+        </button> 
         {% endfor %}
       </div>
     </div>
